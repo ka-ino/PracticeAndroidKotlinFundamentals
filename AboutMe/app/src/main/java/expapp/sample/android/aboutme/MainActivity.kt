@@ -14,13 +14,19 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+    private val myName: MyName = MyName("Bell Cranel")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        binding.doneButton.setOnClickListener { clickHandlerFunction(it) }
-        binding.nicknameText.setOnClickListener { updateNickname(it) }
+        binding.myName = this.myName
+
+        binding.apply {
+            doneButton.setOnClickListener { clickHandlerFunction(it) }
+            nicknameText.setOnClickListener { updateNickname(it) }
+        }
 
     }
 
@@ -29,10 +35,12 @@ class MainActivity : AppCompatActivity() {
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
 
         binding.apply {
-            nicknameText.text = nicknameEdit.text
+            myName?.nickname = nicknameEdit.text.toString()
             nicknameEdit.visibility = View.GONE
             doneButton.visibility = View.GONE
             nicknameText.visibility = View.VISIBLE
+
+            invalidateAll()
         }
     }
 
