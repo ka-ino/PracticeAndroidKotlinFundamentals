@@ -23,10 +23,19 @@
             android:orientation="vertical">
 
             <fragment
-                android:id="@+id/titleFragment"
-                android:name="com.example.android.navigation.titleFragment"
+                android:id="@+id/myNavHostFragment"
+                android:name="androidx.navigation.fragment.NavHostFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                app:navGraph="@navigation/navigation"
+                app:defaultNavHost="true"
+                />
+
+            <!--<fragment-->
+                <!--android:id="@+id/TitleFragment"-->
+                <!--android:name="com.example.android.navigation.TitleFragment"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent" />-->
         </LinearLayout>
 
 </layout>
