@@ -1,11 +1,11 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.drawerlayout:drawerlayout:1.0.0-rc01@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/drawerlayout-1.0.0-rc01.aar/151aa828376fcb4fedfb5e3d0a5f00e7/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d89a22451e0f2fff200be21aa4d9182c/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/drawerlayout-1.0.0-rc01.aar/151aa828376fcb4fedfb5e3d0a5f00e7/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/drawerlayout-1.0.0-rc01.aar/151aa828376fcb4fedfb5e3d0a5f00e7/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d89a22451e0f2fff200be21aa4d9182c/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d89a22451e0f2fff200be21aa4d9182c/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
