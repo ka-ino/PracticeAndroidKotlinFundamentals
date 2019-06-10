@@ -34,6 +34,7 @@ class TitleFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        // 選択された項目と一致するFragmentにナビゲートする
         return NavigationUI.onNavDestinationSelected(
                 item!!, view!!.findNavController()) || super.onOptionsItemSelected(item)
     }
