@@ -101,7 +101,8 @@ class GameFragment : Fragment() {
                     } else {
                         // 勝利
                         view.findNavController()
-                                .navigate(GameFragmentDirections.actionGameFragmentToGameWonFragment())
+                                .navigate(GameFragmentDirections
+                                        .actionGameFragmentToGameWonFragment(numQuestions, questionIndex))
                     }
                 } else {
                     // ゲームオーバー
