@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.android.navigation.databinding.FragmentTitleBinding
+import timber.log.Timber
 
 class TitleFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -26,6 +27,8 @@ class TitleFragment : Fragment() {
         // オプションメニュー
         setHasOptionsMenu(true)
 
+        Timber.i("onCreateView Called")
+
         return binding.root
     }
 
@@ -38,5 +41,52 @@ class TitleFragment : Fragment() {
         // 選択された項目と一致するFragmentにナビゲートする
         return NavigationUI.onNavDestinationSelected(
                 item!!, view!!.findNavController()) || super.onOptionsItemSelected(item)
+    }
+
+
+    // FragmentのLifecycle調査
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        Timber.i("onAttach Called")
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Timber.i("onCreate Called")
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        Timber.i("onActivityCreated Called")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Timber.i("onStart Called")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Timber.i("onResume Called")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Timber.i("onPause Called")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Timber.i("onStop Called")
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Timber.i("onDestroyView Called")
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Timber.i("onDetach Called")
     }
 }
