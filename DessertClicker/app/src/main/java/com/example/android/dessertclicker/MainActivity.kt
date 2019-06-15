@@ -27,6 +27,10 @@ import androidx.databinding.DataBindingUtil
 import com.example.android.dessertclicker.databinding.ActivityMainBinding
 import timber.log.Timber
 
+const val KEY_REVENUE = "revenue_key"
+const val KEY_DESSERT_SOLD = "dessert_sold_key"
+const val KEY_TIMER_SECONDS = "timer_seconds_key"
+
 class MainActivity : AppCompatActivity() {
 
     private var revenue = 0
@@ -66,10 +70,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         Timber.i("onCreate Called")
 
         dessertTimer = DessertTimer(this.lifecycle)
+
+        savedInstanceState?.apply {
+            Timber.i("Bundle: ${this.toString()}")
+            revenue = getInt(KEY_REVENUE, 0)
+            dessertsSold = getInt(KEY_DESSERT_SOLD, 0)
+            dessertTimer.secondsCount = getInt(KEY_TIMER_SECONDS, 0)
+        }
+
 
         // Use Data Binding to get reference to the views
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -120,6 +131,25 @@ class MainActivity : AppCompatActivity() {
     override fun onRestart() {
         super.onRestart()
         Timber.i("onRestart Called")
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        Timber.i("onSaveInstanceState Called")
+
+        outState?.apply {
+            Timber.i("Bundle: ${this.toString()}")
+            putInt(KEY_DESSERT_SOLD, dessertsSold)
+            putInt(KEY_TIMER_SECONDS, dessertTimer.secondsCount)
+            putInt(KEY_REVENUE, revenue)
+
+            showCurrentDessert()
+        }
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+        Timber.i("onRestoreInstanceState Called")
     }
 
     /**
