@@ -1,4 +1,0 @@
-#Sat Jun 15 18:37:03 JST 2019
-base.0=C\:\\Users\\Kazuharu\\Repository\\PracticeAndroidKotlinFundamentals\\DessertClicker\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\10
-path.0=classes.dex
-renamed.0=classes.dex
