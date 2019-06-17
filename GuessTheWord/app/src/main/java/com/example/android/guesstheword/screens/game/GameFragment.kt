@@ -23,6 +23,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -54,26 +55,35 @@ class GameFragment : Fragment() {
                 false
         )
 
+        // scoreを監視して値が変更されたらラムダを実行する
+        viewModel.score.observe(this, Observer { newScore ->
+            binding.scoreText.text = newScore.toString()
+        })
+        viewModel.word.observe(this, Observer { newWord ->
+            binding.wordText.text = newWord
+        })
+
+
 
         binding.correctButton.setOnClickListener { onCorrect() }
         binding.skipButton.setOnClickListener { onSkip() }
         binding.endGameButton.setOnClickListener { onEndGame() }
 
-        updateScoreText()
-        updateWordText()
+//        updateScoreText()
+//        updateWordText()
         return binding.root
     }
 
     private fun onSkip() {
         viewModel.onSkip()
-        updateWordText()
-        updateScoreText()
+//        updateWordText()
+//        updateScoreText()
     }
 
     private fun onCorrect() {
         viewModel.onCorrect()
-        updateWordText()
-        updateScoreText()
+//        updateWordText()
+//        updateScoreText()
     }
 
 
