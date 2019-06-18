@@ -7,21 +7,24 @@ import timber.log.Timber
 
 class GameViewModel: ViewModel() {
 
-
+    // バッキングプロパティ
+    private var _word = MutableLiveData<String>()
     val word: LiveData<String>
         get() = _word
 
     // バッキングプロパティ
-    private var _word = MutableLiveData<String>()
-
-
+    private var _score = MutableLiveData<Int>()
     val score: LiveData<Int>
         get() = _score
 
-    // バッキングプロパティ
-    private var _score = MutableLiveData<Int>()
+
+    private val _eventGameFinish = MutableLiveData<Boolean>()
+
+    val eventGameFinish: LiveData<Boolean>
+      get() = _eventGameFinish
 
     private lateinit var wordList: MutableList<String>
+
 
     private fun resetList() {
         wordList = mutableListOf(
@@ -82,10 +85,24 @@ class GameViewModel: ViewModel() {
     }
 
     private fun nextWord() {
-        if (!wordList.isEmpty()) {
+        if (wordList.isEmpty()) {
+            // 単語リストが空ならゲーム終了
+            onGameFinish()
+        } else {
             //Select and remove a word from the list
             _word.value = wordList.removeAt(0)
         }
+    }
+
+    /***
+     *  ゲーム終了イベント
+     */
+    fun onGameFinish() {
+        _eventGameFinish.value = true
+    }
+
+    fun onGameFinishComplete() {
+        _eventGameFinish.value = false
     }
 }
 
