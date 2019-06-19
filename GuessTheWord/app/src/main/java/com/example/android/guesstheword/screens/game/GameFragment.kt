@@ -55,6 +55,8 @@ class GameFragment : Fragment() {
                 false
         )
 
+        binding.gameViewModel = viewModel
+
         // scoreを監視して値が変更されたらラムダを実行する
         viewModel.score.observe(this, Observer { newScore ->
             binding.scoreText.text = newScore.toString()
