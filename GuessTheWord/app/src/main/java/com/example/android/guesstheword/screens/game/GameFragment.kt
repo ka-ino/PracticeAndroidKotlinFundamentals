@@ -44,8 +44,6 @@ class GameFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        Timber.i("Called ViewModelProviders.of")
-        viewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
 
         // Inflate view and obtain an instance of the binding class
         binding = DataBindingUtil.inflate(
@@ -55,40 +53,27 @@ class GameFragment : Fragment() {
                 false
         )
 
+        Timber.i("Called ViewModelProviders.of")
+        viewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
+
         binding.gameViewModel = viewModel
+
 
         // scoreを監視して値が変更されたらラムダを実行する
         viewModel.score.observe(this, Observer { newScore ->
-            binding.scoreText.text = newScore.toString()
+//            binding.scoreText.text = newScore.toString()
         })
         viewModel.word.observe(this, Observer { newWord ->
-            binding.wordText.text = newWord
+//            binding.wordText.text = newWord
         })
 
         viewModel.eventGameFinish.observe(this, Observer<Boolean> { hasFinished ->
             if (hasFinished) gameFinished()
         })
 
-
-        binding.correctButton.setOnClickListener { onCorrect() }
-        binding.skipButton.setOnClickListener { onSkip() }
-        binding.endGameButton.setOnClickListener { onEndGame() }
-
 //        updateScoreText()
 //        updateWordText()
         return binding.root
-    }
-
-    private fun onSkip() {
-        viewModel.onSkip()
-//        updateWordText()
-//        updateScoreText()
-    }
-
-    private fun onCorrect() {
-        viewModel.onCorrect()
-//        updateWordText()
-//        updateScoreText()
     }
 
 
@@ -100,10 +85,6 @@ class GameFragment : Fragment() {
 
     private fun updateScoreText() {
         binding.scoreText.text = viewModel.score.value.toString()
-    }
-
-    private fun onEndGame() {
-        gameFinished()
     }
 
     private fun gameFinished() {
