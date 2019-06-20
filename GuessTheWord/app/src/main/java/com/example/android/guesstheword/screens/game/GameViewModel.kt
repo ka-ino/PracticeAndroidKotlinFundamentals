@@ -7,12 +7,10 @@ import timber.log.Timber
 
 class GameViewModel: ViewModel() {
 
-    // バッキングプロパティ
     private var _word = MutableLiveData<String>()
     val word: LiveData<String>
         get() = _word
 
-    // バッキングプロパティ
     private var _score = MutableLiveData<Int>()
     val score: LiveData<Int>
         get() = _score
@@ -55,10 +53,10 @@ class GameViewModel: ViewModel() {
 
 
     init {
-        Timber.i("GameViewModel Created!")
-
         _word.value = ""
         _score.value = 0
+
+        Timber.i("GameViewModel Created!")
 
         resetList()
         nextWord()

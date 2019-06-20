@@ -45,46 +45,20 @@ class GameFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
 
 
-        // Inflate view and obtain an instance of the binding class
-        binding = DataBindingUtil.inflate(
-                inflater,
-                R.layout.game_fragment,
-                container,
-                false
-        )
+        binding = DataBindingUtil.inflate(inflater, R.layout.game_fragment, container, false)
 
         Timber.i("Called ViewModelProviders.of")
         viewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
 
         binding.gameViewModel = viewModel
 
-
-        // scoreを監視して値が変更されたらラムダを実行する
-        viewModel.score.observe(this, Observer { newScore ->
-//            binding.scoreText.text = newScore.toString()
-        })
-        viewModel.word.observe(this, Observer { newWord ->
-//            binding.wordText.text = newWord
-        })
+        // DataBindingにViewModelをセット。レイアウトの全要素をViewModelからアクセス可能になる。
+        binding.lifecycleOwner = this
 
         viewModel.eventGameFinish.observe(this, Observer<Boolean> { hasFinished ->
             if (hasFinished) gameFinished()
         })
-
-//        updateScoreText()
-//        updateWordText()
         return binding.root
-    }
-
-
-    /** Methods for updating the UI **/
-
-    private fun updateWordText() {
-        binding.wordText.text = viewModel.word.value
-    }
-
-    private fun updateScoreText() {
-        binding.scoreText.text = viewModel.score.value.toString()
     }
 
     private fun gameFinished() {
