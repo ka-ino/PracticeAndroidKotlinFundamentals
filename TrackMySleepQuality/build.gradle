@@ -26,6 +26,7 @@ buildscript {
         gradleVersion = '3.4.1'
         navigationVersion = '1.0.0-alpha08'
         dataBindingCompilerVersion = gradleVersion // Always need to be the same.
+        recycler_version = '1.0.0'
     }
 
     repositories {
