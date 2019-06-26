@@ -73,7 +73,7 @@ dependencies {
     implementation "android.arch.navigation:navigation-ui-ktx:$navigationVersion"
 
     // RecyclerView
-    implementation "androidx.recyclerview：recyclerview：$recycler_version"
+    implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
 
     // Testing
     testImplementation 'junit:junit:4.12'
