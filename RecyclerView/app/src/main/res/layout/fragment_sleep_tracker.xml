@@ -14,14 +14,14 @@
   ~ limitations under the License.
   -->
 
-<!-- Wrapping the layout into /layout to make it available with data binding. -->
+<!-- レイアウトを/ layoutにラップして、データバインディングで使用できるようにします。 -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Data to make available to the XML via data binding. In this case,
-         the whole ViewModel, so that we can access the LiveData,
-         click handlers, and state variables. -->
+    <!-- データバインディングを介してXMLで使用できるようにするデータ。 この場合、
+          LiveModelにアクセスできるように、ViewModel全体、
+          クリックハンドラー、および状態変数. -->
     <data>
 
         <variable
@@ -35,36 +35,24 @@
         android:layout_height="match_parent"
         tools:context=".sleeptracker.SleepTrackerFragment">
 
-        <!-- Simplest way of displaying scrollable text and data. There is a
-             better and more efficient way to do this, and you will learn about
-             RecyclerView in a later lesson. -->
+        <!-- スクロール可能なテキストとデータを表示する最も簡単な方法。 あります
+              これを行うより良い、より効率的な方法、そしてあなたはについて学びます
+              後のレッスンのRecyclerView。 -->
 
-        <ScrollView
-            android:layout_width="match_parent"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/sleep_list"
+            android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginBottom="400dp"
             app:layout_constraintBottom_toTopOf="@+id/clear_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/stop_button">
+            app:layout_constraintTop_toBottomOf="@+id/stop_button"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-            <!-- In the TextView, we can access the nightsString LiveData,
-                 which keeps it displayed and updated in the TextView
-                 whenever it changes. -->
-
-            <TextView
-                android:id="@+id/textview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin"
-                android:layout_marginTop="@dimen/margin"
-                android:layout_marginEnd="@dimen/margin"
-                android:text="@{sleepTrackerViewModel.nightsString}" />
-        </ScrollView>
-
-        <!-- With data binding and LiveData, we can track the buttons' visibility states
-             from the ViewModel. The click handler is in the ViewModel as well, and
-             you can set it for the Views using this lambda pattern. -->
+        <!-- データバインディングとLiveDataを使用して、ボタンの可視性状態を追跡できます
+              ViewModelから。 クリックハンドラもViewModelにあり、かつ
+              このラムダパターンを使用してビューに設定できます。 -->
 
         <Button
             android:id="@+id/start_button"
