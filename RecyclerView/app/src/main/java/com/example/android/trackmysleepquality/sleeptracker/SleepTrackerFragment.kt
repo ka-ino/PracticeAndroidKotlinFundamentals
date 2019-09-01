@@ -17,6 +17,7 @@
 package com.example.android.trackmysleepquality.sleeptracker
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -113,7 +114,11 @@ class SleepTrackerFragment : Fragment() {
         binding.sleepList.adapter = adapter
 
         sleepTrackerViewModel.nights.observe(viewLifecycleOwner, Observer { sleepNightList ->
-            sleepNightList?.let { adapter.data = sleepNightList }
+            sleepNightList?.let {
+//                adapter.data = sleepNightList
+                Log.d("SleepTrackerFragment", "observe nights changed")
+                adapter.submitList(it)
+            }
         })
 
         return binding.root
