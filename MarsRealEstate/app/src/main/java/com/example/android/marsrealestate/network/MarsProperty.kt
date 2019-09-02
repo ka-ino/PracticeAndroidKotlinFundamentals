@@ -17,4 +17,11 @@
 
 package com.example.android.marsrealestate.network
 
-class MarsProperty()
+import com.squareup.moshi.Json
+
+class MarsProperty(
+        val id: String,
+        // key名と異なる変数名を使用するには@Jsonアノテーションを使用する
+        @Json(name = "img_src") val imgSrcUrl: String,
+        val type: String, val price: Double
+)
